@@ -1,10 +1,10 @@
-export class userDto {
-    userId: string;
-    firstname: string;
-    lastname: string;   
-    profilePicUrl: string;  
-    phoneNumber: string; 
-    businessName: string;   
-    businessAddress: string;
-  }
-  
+export class UserDTO {
+  userId: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  profilePicUrl: string;
+  phoneNumber: string;
+  businessName: string;
+  businessAddress: string;
+}

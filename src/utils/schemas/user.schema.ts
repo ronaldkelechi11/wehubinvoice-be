@@ -1,30 +1,33 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document, Mongoose } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { Invoice } from './invoice.schema';
 
 @Schema()
 export class User extends Document {
-    @Prop()
+    @Prop({ immutable: true, required: true })
     userId: string;
 
-    @Prop()
+    @Prop({ required: true })
     firstname: string;
 
-    @Prop()
-    lastname: string;   
+    @Prop({ required: true })
+    lastname: string;
 
-    @Prop()
-    profilePicUrl: string;  
+    @Prop({ required: true })
+    email: string;
 
-    @Prop()
-    phoneNumber: string; 
+    @Prop({ required: true })
+    profilePicUrl: string;
 
-    @Prop()
-    businessName: string;   
+    @Prop({ required: true })
+    phoneNumber: string;
 
-    @Prop()
+    @Prop({ required: true })
+    businessName: string;
+
+    @Prop({ required: true })
     businessAddress: string;
-    
+
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Invoice' }] })
     invoices: Invoice[];
 }
