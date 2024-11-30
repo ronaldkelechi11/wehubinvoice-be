@@ -1,11 +1,9 @@
-
 type Itemlist = {
-    itemName:string,
-    itemQuantity:number,
-    itemRate:number
+    itemName: string,
+    itemQuantity: number,
+    itemRate: number
 }
-
-export class InvoiceDTO{
+export class InvoiceDTO {
     invoiceId: string;
     profielPicUrl: string;
     senderName: string;
