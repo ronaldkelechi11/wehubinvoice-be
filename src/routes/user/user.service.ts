@@ -24,7 +24,7 @@ export class UserService {
         return 'success'
     }
 
-    // Return User
+    // Get User
     async getUser(userId) {
         const user = await this.userModel.findOne({ userId: userId })
         if (!user) {
@@ -34,42 +34,4 @@ export class UserService {
             return user;
         }
     }
-
-    // Add Invoice to User
-    async addInvoice(userId, invoiceId) {
-        const user = await this.userModel.findOneAndUpdate({ userId: userId },
-            { $push: { invoices: invoiceId } })
-        return user;
-    }
-
-
-    // Update User
-    // async updateUser(user) {
-    //     // Find the original User by userId
-    //     const originalUser = await this.userModel.findOne({
-    //         userId: user.userId,
-    //     });
-
-    //     if (!originalUser) {
-    //         throw new BadRequestException('User not found');
-    //     }
-
-    //     // Compare the original and the updated values
-    //     const hasChanges = Object.keys(user).some((key) => {
-    //         return user[key] !== originalUser[key];
-    //     });
-
-    //     if (!hasChanges) {
-    //         return { message: 'No changes detected', updatePackage: originalUser };
-    //     }
-
-    //     // Update the package and return the updated document
-    //     const updatedUser = await this.userModel.findOneAndUpdate(
-    //         { userId: user.userId },
-    //         { $set: user }, // Only set fields that are provided
-    //         { new: true },
-    //     );
-
-    //     return { message: 'success', updatedUser };
-    // }
 }

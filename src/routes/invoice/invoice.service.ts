@@ -2,10 +2,13 @@ import { BadRequestException, ConflictException, Injectable, NotFoundException }
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Invoice } from 'src/utils/schemas/invoice.schema';
+import { User } from 'src/utils/schemas/user.schema';
 
 @Injectable()
 export class InvoiceService {
-    constructor(@InjectModel(Invoice.name) private invoiceModel: Model<Invoice>) { }
+    constructor(
+        @InjectModel(Invoice.name) private invoiceModel: Model<Invoice>,
+        @InjectModel(User.name) private userModel: Model<User>) { }
 
     // Create Invoice
     async createInvoice(invoice) {
@@ -21,7 +24,11 @@ export class InvoiceService {
             throw new ConflictException('Invoice with ID already exists')
         }
 
-        await this.invoiceModel.create(invoice);
+        const createdInvoice = await this.invoiceModel.create(invoice);
+
+        await this.userModel.findOneAndUpdate({ userId: invoice.userId },
+            { $push: { invoices: createdInvoice._id } })
+
         return 'Success';
 
     }

@@ -17,10 +17,4 @@ export class UserController {
     getUser(@Body('userId') userId: string) {
         return this.userService.getUser(userId);
     }
-
-    // Update User
-    @Put()
-    updateUser(@Body('userid') userId: string, @Body('invoiceId') invoiceId: string) {
-        return this.userService.addInvoice(userId, invoiceId);
-    }
 }

@@ -3,6 +3,7 @@ import { InvoiceController } from './invoice.controller';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Invoice, InvoiceSchema } from 'src/utils/schemas/invoice.schema';
+import { User, UserSchema } from 'src/utils/schemas/user.schema';
 
 @Module({
     imports: [
@@ -10,6 +11,10 @@ import { Invoice, InvoiceSchema } from 'src/utils/schemas/invoice.schema';
             {
                 name: Invoice.name,
                 schema: InvoiceSchema
+            },
+            {
+                name: User.name,
+                schema: UserSchema
             }
         ])
     ],
