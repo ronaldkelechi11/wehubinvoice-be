@@ -5,7 +5,6 @@ type Itemlist = {
 }
 export class InvoiceDTO {
     invoiceId: string;
-    userId: string;
     profielPicUrl: string;
     senderName: string;
     senderEmail: string;
