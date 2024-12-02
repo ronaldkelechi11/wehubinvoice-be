@@ -4,9 +4,6 @@ import { Invoice } from './invoice.schema';
 
 @Schema()
 export class User extends Document {
-    @Prop({ immutable: true, required: true })
-    userId: string;
-
     @Prop({ required: true })
     firstname: string;
 

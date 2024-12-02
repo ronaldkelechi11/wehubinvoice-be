@@ -1,4 +1,4 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/utils/schemas/user.schema';
@@ -9,24 +9,20 @@ export class UserService {
 
     // Create User
     async createUser(user) {
-        try {
-            if (!user) {
-                throw new BadRequestException('Invalid User Details');
-            }
+        const myUser = user.payload
 
-            await this.userModel.create(user);
-        } catch (error) {
-            if (error instanceof BadRequestException) {
-                throw error; // Let the BadRequestException propagate
-            }
-            throw new ConflictException(error.message || 'Failed to add package');
+        // 400
+        if (!myUser) {
+            throw new BadRequestException('Invalid User Details');
         }
+
+        await this.userModel.create(myUser);
         return 'success'
     }
 
     // Get User
-    async getUser(userId) {
-        const user = await this.userModel.findOne({ userId: userId })
+    async getUser(email) {
+        const user = await this.userModel.findOne({ email: email })
         if (!user) {
             throw new NotFoundException();
         }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Delete, Param } from '@nestjs/common';
 import { InvoiceService } from './invoice.service';
 import { InvoiceDTO } from 'src/utils/dto/invoice.dto';
 
@@ -13,8 +13,8 @@ export class InvoiceController {
     }
 
     // Read Invoice
-    @Get()
-    readInvoice(@Body('invoiceId') invoiceId: string) {
+    @Get(':invoiceId')
+    readInvoice(@Param('invoiceId') invoiceId: string) {
         return this.invoiceService.readInvoice(invoiceId)
     }
 
