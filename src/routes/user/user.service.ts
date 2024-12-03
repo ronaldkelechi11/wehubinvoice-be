@@ -22,7 +22,7 @@ export class UserService {
 
     // Get User
     async getUser(email) {
-        const user = await this.userModel.findOne({ email: email })
+        const user = await this.userModel.findOne({ email: email }).populate('invoices')
         if (!user) {
             throw new NotFoundException();
         }
