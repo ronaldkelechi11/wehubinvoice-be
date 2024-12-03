@@ -1,6 +1,7 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Status } from 'src/utils/enums/Status.enum';
 import { Invoice } from 'src/utils/schemas/invoice.schema';
 import { User } from 'src/utils/schemas/user.schema';
 
@@ -53,6 +54,12 @@ export class InvoiceService {
             throw new NotFoundException('Invoice not found')
         }
         return 'Invoice Deleted';
+    }
+
+    // Change Invoice Status
+    async changeStatus(invoiceId) {
+        const invoice = await this.invoiceModel.findOneAndUpdate({ invoiceId: invoiceId }, { status: Status.PAID })
+        return invoice;
     }
 
 }
