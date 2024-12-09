@@ -27,7 +27,7 @@ export class InvoiceService {
 
         const createdInvoice = await this.invoiceModel.create(invoice);
 
-        await this.userModel.findOneAndUpdate({ userId: invoice.userId },
+        await this.userModel.findOneAndUpdate({ email: invoice.senderEmail },
             { $push: { invoices: createdInvoice._id } })
 
         return 'Success';
