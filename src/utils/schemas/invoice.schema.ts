@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Status } from '../enums/Status.enum';
+import { Currency } from '../enums/currency.enum';
 
 type Itemlist = {
     itemName: string,
@@ -28,7 +29,7 @@ export class Invoice extends Document {
     @Prop()
     recipientName: string;
 
-    @Prop()
+    @Prop({ required: true })
     recipientEmail: string;
 
     @Prop()
@@ -51,6 +52,9 @@ export class Invoice extends Document {
 
     @Prop({ default: Status.UNPAID, enum: Status })
     status: Status;
+
+    @Prop({ default: Currency.NGN, enum: Currency })
+    currency: Currency;
 }
 
 export const InvoiceSchema = SchemaFactory.createForClass(Invoice);

@@ -1,8 +1,11 @@
+import { Currency } from "../enums/currency.enum";
+
 type Itemlist = {
     itemName: string,
     itemQuantity: number,
     itemRate: number
 }
+
 export class InvoiceDTO {
     invoiceId: string;
     profielPicUrl: string;
@@ -17,4 +20,5 @@ export class InvoiceDTO {
     dueDate: string;
     terms: string;
     itemList: Itemlist[];
+    currency: string;
 }
