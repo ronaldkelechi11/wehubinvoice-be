@@ -15,7 +15,7 @@ export class Invoice extends Document {
     invoiceId: string;
 
     @Prop()
-    profielPicUrl: string;
+    profilePicUrl: string;
 
     @Prop()
     senderName: string;
